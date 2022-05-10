@@ -19,5 +19,7 @@ from  commands.verItensPlayer import VerItensPlayer
 VerItensPlayer(client, GUILDS)
 from commands.limparVendas import limparVendas
 limparVendas(client, GUILDS)
+from commands.procurar import procurar
+procurar(client, GUILDS)
 
 client.run(TOKEN)
