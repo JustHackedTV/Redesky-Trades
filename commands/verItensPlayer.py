@@ -9,5 +9,15 @@ def VerItensPlayer(client, GUILDS):
       return await ctx.respond(":no_entry: Erro: `Este usuário não possui nenhuma listing.`", ephemeral=True)
     listingStr = ""
     for listing in JFile[str(user.id)]:
-      listingStr += f":pushpin: **{listing['item']}** - :moneybag: {listing['coins']} coins | :receipt: Quantidade: `{listing['quantidade']}`\n"
+      coins = listing['coins']
+      coinSimplfied = 0
+      if coins >= 1000000000:
+        coinSimplfied = f"${int(coins / 1000000000)}b (bilhões)"
+      elif coins >= 1000000:
+        coinSimplfied = f"${int(coins / 1000000)}kk (milhões)"
+      elif coins >= 1000:
+        coinSimplfied = f"${int(coins / 1000)}k"
+      elif coins >= 1:
+        coinSimplfied = f"${int(coins)}"
+      listingStr += f":pushpin: **{listing['item']}** - :moneybag: {coinSimplfied} coins | :receipt: Quantidade: `{listing['quantidade']}`\n"
     await ctx.respond(f"{user.mention} possui as seguintes listings:\n{listingStr}")
